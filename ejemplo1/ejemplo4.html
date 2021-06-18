@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarFecha(){
+            document.getElementById("fecha").innerHTML = Date()
+        }
+        function pasarMayuscula(){
+            var letras = document.getElementById("nombre");
+            letras.value = letras.value.toUpperCase();
+        }
+        function mouseEncima(obj){
+            obj.innerHTML = "El mouse esta encima";
+            obj.style.backgroundColor = "yellow";
+        }
+        function mouseFuera(obj){
+            obj.innerHTML = "El mouse esta Afuera";
+            obj.style.backgroundColor = "blue";
+        }
+        function apretarMouse(obj){
+            obj.style.backgroundColor = "skyBlue";
+            obj.innerHTML = "El color es celeste";
+        }
+        function soltarMouse(obj){
+            obj.style.backgroundColor = "green";
+            obj.innerHTML = "El color es verde";
+        }
+        function ventana1(){
+            alert("Esta es la ventana 1");
+        }
+        function ventana2(){
+            var texto = new String;
+            if(confirm("Presione un boton")){
+                texto = "Se ha presionado el botón Aceptar"
+            }
+            else{
+                texto = "Se ha presionado el botón Cancelar"
+            }
+            document.getElementById("confirmo").innerHTML = texto;
+        }
+        function ventana3(){
+            var texto = new String;
+            var nombre = prompt("Ingrese su nombre");
+            if(nombre = null || nombre == ""){
+                texto = "Usted no ha ingresado el nombre";
+            }
+            else{
+                texto = ""
+            }
+        }
+
+    </script>
+    <style>
+        #fijo{
+            width: 600px;
+            height: 600px;
+            position: relative;
+            background-color: darkorange;
+        }
+        #movimiento{
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            background-color: rgb(216,253,5);
+        }
+    </style>
+    <script>
+        function mover(){
+            var elemento = document.getElementById("movimiento");
+            var posicion = 0;
+            var intervalo = setInterval(frame,10);
+            function frame(){
+                if(posicion==530){
+                    clearInterval(intervalo);
+                }
+                else{
+                    posicion++;
+                    elemento.style.top = posicion + "px";
+                    elemento.style.left = posicion + "px";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick = "mostrarFecha()">Mostrar Fecha</button>
+    <br>
+    <p id = "fecha"></p>
+    Ingrese su nombre: <input type="text" id = "nombre" onchange="pasarMayuscula()">
+    <br>
+    <div onmouseover="mouseEncima(this)" onmouseout="mouseFuera(this)" style = "background: coral;
+        width: 200px; height: 50px; border: 3px;padding: 20px;">
+        El mouse se va a colocar encima
+        
+    </div>
+
+    <div onmousedown="apretarMouse(this)" onmouseup="soltarMouse(this)"
+        style="background-color: darkorange; width: 200px;height: 50px;border: 3px;padding: 20px;">
+    
+    
+    
+    </div>
+
+    <br>
+
+    <button onclick = "ventana1()"> Mostrar Ventana 1</button>
+    <br>
+    <button onclick = "ventana2()"> Mostrar Ventana 2</button>
+    <br>
+    <p id="confirmo"></p>
+    <br>
+    <button onclick = "ventana3()"> Mostrar Ventana 3</button>
+    <br>
+    <p id = "texto"></p>
+    <br>
+    <br>
+    <button onclick = "mover()">mover</button>
+
+    <div id = "fijo">
+        <div id="movimiento"></div>
+    </div>
+</body>
+</html>
